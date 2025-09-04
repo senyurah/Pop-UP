@@ -2,27 +2,30 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aguarde...</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #eee;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
             text-align: center;
-            background-color: #333;
-            color: #333;
+            padding: 20px;
         }
         .message {
-            font-size: 1.5em;
+            font-size: 5vw;
             margin-bottom: 20px;
         }
         .countdown {
-            font-size: 2.5em;
+            font-size: 12vw;
             font-weight: bold;
-            color: #f0f0f0;
+            color: #4caf50;
         }
     </style>
 </head>
@@ -33,7 +36,7 @@
     <div class="countdown" id="countdown">30</div>
 
     <script>
-        let tempoRestante = 30; // segundos
+        let tempoRestante = 30;
         const countdownElement = document.getElementById('countdown');
 
         const interval = setInterval(() => {
