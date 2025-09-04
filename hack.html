@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Você foi hackeado 😈</title>
+    <meta charset="UTF-8" />
+    <title>Jogando Wordwall...</title>
     <style>
         body {
+            margin: 0;
+            font-family: monospace;
             background-color: black;
             color: lime;
-            font-family: monospace;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+        }
+        #hackMessage {
+            display: none;
             text-align: center;
-            padding: 20px;
         }
-
-        h1 {
+        #hackMessage h1 {
             font-size: 3em;
+            animation: blink 1s infinite;
         }
-
-        p {
-            margin-top: 20px;
-            font-size: 1.5em;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-
-        .glitch {
-            color: red;
-            animation: glitch 1s infinite;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(1px, -1px); }
-            20% { transform: translate(-1px, 1px); }
-            40% { transform: translate(1px, 1px); }
-            60% { transform: translate(-1px, -1px); }
-            80% { transform: translate(1px, -1px); }
-            100% { transform: translate(0, 0); }
+        iframe {
+            border: none;
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1 class="glitch">VOCÊ FOI HACKEADO!</h1>
-        <p>Brincadeira 😅<br>Volte para a apresentação!</p>
+    <iframe id="gameFrame" src="https://wordwall.net/pt/resource/96548678"></iframe>
+
+    <div id="hackMessage">
+        <h1>VOCÊ FOI HACKEADO!</h1>
+        <p>Brincadeira 😅 Volte para a apresentação!</p>
     </div>
+
+    <script>
+        // Tempo de espera: 7 minutos em milissegundos
+        const tempoEspera = 7 * 60 * 1000;
+
+        setTimeout(() => {
+            // Esconde o iframe
+            document.getElementById('gameFrame').style.display = 'none';
+
+            // Mostra a mensagem de hack
+            const hackMsg = document.getElementById('hackMessage');
+            hackMsg.style.display = 'block';
+
+            // Muda o fundo e o texto, se quiser algo extra
+            document.body.style.backgroundColor = 'black';
+            document.body.style.color = 'lime';
+        }, tempoEspera);
+    </script>
 </body>
 </html>
