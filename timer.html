@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aguarde...</title>
+    <meta http-equiv="refresh" content="0; url=https://wordwall.net/pt/resource/96548678">
+</head>
+<body>
+    <script>
+        // Define o tempo em milissegundos (7 minutos = 7 * 60 * 1000 = 420000)
+        var tempoEspera = 1000;
+
+        // Armazena a hora de início para calcular o tempo
+        var startTime = new Date().getTime();
+
+        // Salva a hora de início em localStorage para que o temporizador continue mesmo se a página for fechada
+        localStorage.setItem('startTime', startTime);
+        localStorage.setItem('redirectedToGame', 'true');
+
+        // Redireciona para a página de alerta de forma agendada
+        setTimeout(function() {
+            window.location.href = 'hack.html';
+        }, tempoEspera);
+    </script>
+</body>
+</html>

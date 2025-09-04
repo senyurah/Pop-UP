@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Você foi hackeado 😈</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        .glitch {
+            color: red;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(1px, -1px); }
+            20% { transform: translate(-1px, 1px); }
+            40% { transform: translate(1px, 1px); }
+            60% { transform: translate(-1px, -1px); }
+            80% { transform: translate(1px, -1px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="glitch">VOCÊ FOI HACKEADO!</h1>
+        <p>Brincadeira 😅<br>Volte para a apresentação!</p>
+    </div>
+</body>
+</html>
