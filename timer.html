@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8" />
     <title>Aguarde...</title>
-    <meta http-equiv="refresh" content="0; url=https://wordwall.net/pt/resource/96548678">
 </head>
 <body>
     <script>
-        // Define o tempo em milissegundos (7 minutos = 7 * 60 * 1000 = 420000)
-        var tempoEspera = 42000;
+        // Tempo em milissegundos (7 minutos)
+        const tempoEspera = 7 * 60 * 1000; 
 
-        // Armazena a hora de início para calcular o tempo
-        var startTime = new Date().getTime();
-
-        // Salva a hora de início em localStorage para que o temporizador continue mesmo se a página for fechada
+        // Guarda o tempo de início (agora)
+        const startTime = new Date().getTime();
         localStorage.setItem('startTime', startTime);
-        localStorage.setItem('redirectedToGame', 'true');
+        localStorage.setItem('redirectedToGame', 'false');
 
-        // Redireciona para a página de alerta de forma agendada
+        // Aguarda 7 minutos e redireciona para o Wordwall
         setTimeout(function() {
-            window.location.href = 'hack.html';
+            localStorage.setItem('redirectedToGame', 'true');
+            window.location.href = 'https://wordwall.net/pt/resource/96548678';
         }, tempoEspera);
     </script>
 </body>
