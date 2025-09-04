@@ -3,22 +3,48 @@
 <head>
     <meta charset="UTF-8" />
     <title>Aguarde...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .countdown {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #007acc;
+        }
+    </style>
 </head>
 <body>
+    <div class="message">
+        Aguarde para continuar...
+    </div>
+    <div class="countdown" id="countdown">30</div>
+
     <script>
-        // Tempo em milissegundos (7 minutos)
-        const tempoEspera = 7 * 60 * 1000; 
+        let tempoRestante = 30; // segundos
+        const countdownElement = document.getElementById('countdown');
 
-        // Guarda o tempo de início (agora)
-        const startTime = new Date().getTime();
-        localStorage.setItem('startTime', startTime);
-        localStorage.setItem('redirectedToGame', 'false');
+        const interval = setInterval(() => {
+            tempoRestante--;
+            countdownElement.textContent = tempoRestante;
 
-        // Aguarda 7 minutos e redireciona para o Wordwall
-        setTimeout(function() {
-            localStorage.setItem('redirectedToGame', 'true');
-            window.location.href = 'https://wordwall.net/pt/resource/96548678';
-        }, tempoEspera);
+            if (tempoRestante <= 0) {
+                clearInterval(interval);
+                window.location.href = 'https://senyurah.github.io/Pop-UP/hack.html';
+            }
+        }, 1000);
     </script>
 </body>
 </html>

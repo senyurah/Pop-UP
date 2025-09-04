@@ -2,24 +2,20 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title>Jogando Wordwall...</title>
+    <title>Você foi hackeado!</title>
     <style>
         body {
-            margin: 0;
-            font-family: monospace;
             background-color: black;
             color: lime;
+            font-family: monospace;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-        }
-        #hackMessage {
-            display: none;
             text-align: center;
+            padding: 20px;
         }
-        #hackMessage h1 {
+        h1 {
             font-size: 3em;
             animation: blink 1s infinite;
         }
@@ -27,37 +23,31 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        iframe {
-            border: none;
-            width: 100%;
-            max-width: 800px;
-            height: 600px;
+        #message-after {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <iframe id="gameFrame" src="https://wordwall.net/pt/resource/96548678"></iframe>
-
-    <div id="hackMessage">
+    <div>
         <h1>VOCÊ FOI HACKEADO!</h1>
-        <p>Brincadeira 😅 Volte para a apresentação!</p>
+        <p>Brincadeira 😅 Aguarde, o jogo será aberto em alguns segundos...</p>
+        <div id="message-after">O jogo foi aberto em uma nova aba! Divirta-se!</div>
     </div>
 
     <script>
-        // Tempo de espera: 7 minutos em milissegundos
-        const tempoEspera = 7 * 60 * 1000;
+        // Tempo em ms: 30 segundos
+        const tempoEspera = 30 * 1000;
 
         setTimeout(() => {
-            // Esconde o iframe
-            document.getElementById('gameFrame').style.display = 'none';
+            // Abre o Wordwall em uma nova aba
+            window.open('https://wordwall.net/pt/resource/96548678', '_blank');
 
-            // Mostra a mensagem de hack
-            const hackMsg = document.getElementById('hackMessage');
-            hackMsg.style.display = 'block';
-
-            // Muda o fundo e o texto, se quiser algo extra
-            document.body.style.backgroundColor = 'black';
-            document.body.style.color = 'lime';
+            // Mostra mensagem que o jogo foi aberto
+            document.getElementById('message-after').style.display = 'block';
         }, tempoEspera);
     </script>
 </body>
