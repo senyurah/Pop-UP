@@ -19,7 +19,7 @@
             text-align: center;
         }
         h1 {
-            font-size: 8vw; /* usa vw para responsividade */
+            font-size: 8vw;
             animation: blink 1s infinite;
             margin: 0;
         }
@@ -47,13 +47,38 @@
         <div id="message-after">Redirecionando para o jogo...</div>
     </div>
 
-    <script>
-        const tempoEspera = 12 * 1000; // 30 segundos
+    <!-- Áudio de alerta -->
+    <audio id="warningSound" src="warningeffect.mp3" preload="auto"></audio>
 
-        setTimeout(() => {
-            document.getElementById('message-after').style.display = 'block';
-            window.location.href = 'https://wordwall.net/pt/resource/96548678';
-        }, tempoEspera);
+    <script>
+        const tempoEspera = 12 * 1000; // 12 segundos
+        const warningSound = document.getElementById('warningSound');
+
+        // Função para tocar o som e vibrar
+        function dispararAlerta() {
+            // Tocar som
+            warningSound.currentTime = 0;
+            warningSound.volume = 1.0;
+            warningSound.play().catch(err => {
+                console.warn('Erro ao tocar som:', err);
+            });
+
+            // Vibração (se suportada)
+            if ('vibrate' in navigator) {
+                navigator.vibrate([300, 150, 300, 150, 500]);
+            }
+        }
+
+        // Dispara o alerta assim que o conteúdo estiver carregado
+        window.addEventListener('DOMContentLoaded', () => {
+            dispararAlerta();
+
+            // Depois de X segundos, mostra mensagem e redireciona
+            setTimeout(() => {
+                document.getElementById('message-after').style.display = 'block';
+                window.location.href = 'https://wordwall.net/pt/resource/96548678';
+            }, tempoEspera);
+        });
     </script>
 </body>
 </html>
