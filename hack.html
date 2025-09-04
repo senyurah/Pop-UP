@@ -17,23 +17,38 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            user-select: none;
+            cursor: pointer;
         }
+
+        #pre-start {
+            font-size: 5vw;
+            animation: blink 1.2s infinite;
+        }
+
+        #main-content {
+            display: none;
+        }
+
         h1 {
             font-size: 8vw;
             animation: blink 1s infinite;
             margin: 0;
         }
+
         p {
             font-size: 4vw;
             margin-top: 15px;
             line-height: 1.3;
         }
+
         #message-after {
             display: none;
             margin-top: 20px;
             font-size: 4vw;
             color: white;
         }
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
@@ -41,9 +56,14 @@
     </style>
 </head>
 <body>
-    <div>
+
+    <!-- Tela inicial -->
+    <div id="pre-start">Clique para prosseguir</div>
+
+    <!-- Conteúdo principal -->
+    <div id="main-content">
         <h1>VOCÊ FOI HACKEADO!</h1>
-        <p>Nenhum dado real está comprometido este alerta é apenas uma simulação.<br> O jogo será aberto em alguns segundos...</p>
+        <p>Este alerta é apenas uma simulação.<br> O jogo será aberto em alguns segundos...</p>
         <div id="message-after">Redirecionando para o jogo...</div>
     </div>
 
@@ -51,11 +71,14 @@
     <audio id="warningSound" src="warningeffect.mp3" preload="auto"></audio>
 
     <script>
-        const tempoEspera = 12 * 1000; // 12 segundos
+        const preStart = document.getElementById('pre-start');
+        const mainContent = document.getElementById('main-content');
         const warningSound = document.getElementById('warningSound');
+        const messageAfter = document.getElementById('message-after');
 
-        // Função para tocar o som e vibrar
-        function dispararAlerta() {
+        const tempoEspera = 12 * 1000; // 12 segundos
+
+        function iniciarAlerta() {
             // Tocar som
             warningSound.currentTime = 0;
             warningSound.volume = 1.0;
@@ -63,21 +86,27 @@
                 console.warn('Erro ao tocar som:', err);
             });
 
-            // Vibração (se suportada)
+            // Vibrar (se suportado)
             if ('vibrate' in navigator) {
                 navigator.vibrate([300, 150, 300, 150, 500]);
             }
-        }
 
-        // Dispara o alerta assim que o conteúdo estiver carregado
-        window.addEventListener('DOMContentLoaded', () => {
-            dispararAlerta();
+            // Trocar visuais
+            preStart.style.display = 'none';
+            mainContent.style.display = 'block';
 
-            // Depois de X segundos, mostra mensagem e redireciona
+            // Redirecionamento
             setTimeout(() => {
-                document.getElementById('message-after').style.display = 'block';
+                messageAfter.style.display = 'block';
                 window.location.href = 'https://wordwall.net/pt/resource/96548678';
             }, tempoEspera);
+        }
+
+        // Inicia após clique em qualquer lugar do body
+        document.body.addEventListener('click', function handleClickOnce() {
+            iniciarAlerta();
+            // Remove o listener após o primeiro clique
+            document.body.removeEventListener('click', handleClickOnce);
         });
     </script>
 </body>
