@@ -34,8 +34,8 @@
 <body>
     <div>
         <h1>VOCÊ FOI HACKEADO!</h1>
-        <p>Brincadeira 😅 Aguarde, o jogo será aberto em alguns segundos...</p>
-        <div id="message-after">O jogo foi aberto em uma nova aba! Divirta-se!</div>
+        <p>Nenhum dado real está comprometido, este alerta é apenas uma simulação. Aguarde, o jogo será aberto em alguns segundos...</p>
+        <div id="message-after">Redirecionando para o jogo...</div>
     </div>
 
     <script>
@@ -43,11 +43,11 @@
         const tempoEspera = 30 * 1000;
 
         setTimeout(() => {
-            // Abre o Wordwall em uma nova aba
-            window.open('https://wordwall.net/pt/resource/96548678', '_blank');
-
-            // Mostra mensagem que o jogo foi aberto
+            // Mostra a mensagem antes do redirecionamento
             document.getElementById('message-after').style.display = 'block';
+
+            // Redireciona a aba atual para o Wordwall
+            window.location.href = 'https://wordwall.net/pt/resource/96548678';
         }, tempoEspera);
     </script>
 </body>
